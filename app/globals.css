@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* 모든 a태그는 다음 css를 가진다. */
+  a {
+    @apply text-blue-500;
+  }
+}
+
+.btn {
+  @apply w-full bg-black h-10 text-white;
+}
+
+@layer utilities {
+  .text-bigger-hello {
+    @apply text-3xl font-semibold;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply w-full bg-black h-10 text-white;
+  }
+}
