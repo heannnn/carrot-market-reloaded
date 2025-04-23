@@ -3,14 +3,9 @@
 @tailwind utilities;
 
 @layer base {
-  /* 모든 a태그는 다음 css를 가진다. */
   a {
-    @apply text-blue-500;
+    @apply text-orange-500;
   }
-}
-
-.btn {
-  @apply w-full bg-black h-10 text-white;
 }
 
 @layer utilities {
@@ -20,7 +15,7 @@
 }
 
 @layer components {
-  .btn {
-    @apply w-full bg-black h-10 text-white;
+  .primary-btn {
+    @apply w-full bg-orange-500 text-white  font-medium  rounded-md text-center hover:bg-orange-400 transition-colors;
   }
 }
