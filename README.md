@@ -26,3 +26,8 @@
 
 - tailwind play로 tailwind 공부하기
   https://play.tailwindcss.com/ASbiScbZRJ
+
+# Route Handlers
+
+Route Handlers를 사용하면 웹 요청 및 응답 API를 사용하여 특정 경로에 대한 사용자 커스텀 요청 핸들러를 생성할 수 있다.
+Route Handlers는 app 디렉터리 내에서만 사용할 수 있고, 파일명 route.ts 가 중요하다=> NextJS가 Route Handler를 만든다는 것을 알 수 있음
