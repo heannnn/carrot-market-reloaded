@@ -71,3 +71,15 @@ z.coerce.number(); // Number(input)
 z.coerce.boolean(); // Boolean(input)
 z.coerce.bigint(); // BigInt(input)
 z.coerce.date(); // new Date(input)
+
+# Prisma - .env 파일에 DB정보가 있음(gitignore포함)
+
+차세대 Node.js 및 TypeScript ORM
+npm i prisma
+npx prisma init
+npx prisma migrate dev
+
+# Prisma Client
+
+Prisma Client는 데이터에 맞춰 자동 생성되는 type-safe 쿼리 빌더입니다.
+데이터베이스와 상호작용할 때 SQL 대신 직관적인 API를 제공해줍니다. 데이터를 쉽게 조회, 삽입, 업데이트, 삭제할 수 있으며, 자동 타입 안전성과 코드 자동 완성 기능을 제공합니다.
