@@ -35,3 +35,39 @@ Route Handlers는 app 디렉터리 내에서만 사용할 수 있고, 파일명 
 # useFormStatus
 
 useFormStatus는 마지막 form submit의 상태 정보를 제공하는 hook
+
+# zod
+
+유효성 검사 라이브러리
+사용자가 Server action으로 보내는 데이터의 유효성 검사에 도움을 준다.
+
+[Object Schema]
+z.object() 로 오브젝트 스키마를 만들 수 있음음
+예시: const User = z.object( { username: z.string() } );
+
+[.parse]
+data의 타입이 유효한지 검사하기 위해 .parse 메소드를 사용할 수 있습니다. 유효한 경우 데이터 전체 정보가 포함된 값이 반환. 유효하지 않은 경우, 에러 발생. 보통 try-catch 문으로 감싸서 사용
+
+[.safeParse]
+.parse를 사용할 때 타입이 유효하지 않은 경우 Zod가 에러를 발생시키는 것을 원하지 않는다면, .safeParse를 사용
+
+데이터가 유효한 경우 true값의 success와 데이터 정보가 담긴 data를 반환
+유효하지 않은 경우에는 false값의 success와 에러 정보가 담긴 error를 반환
+
+예시 : stringSchema.safeParse(12); // => { success: false; error: ZodError }
+
+# validator
+
+JavaScript의 validator 모듈은 문자열 검증 및 살균(sanitization)을 위한 라이브러리
+다양한 유형의 문자열 입력을 검증하거나 살균하는 데 사용할 수 있는 여러 함수를 제공
+npm i validator
+npm i @types/validator
+
+# Coerce
+
+Zod는 coerce를 이용하여 값의 타입을 강제할 수 있음
+z.coerce.string(); // String(input)
+z.coerce.number(); // Number(input)
+z.coerce.boolean(); // Boolean(input)
+z.coerce.bigint(); // BigInt(input)
+z.coerce.date(); // new Date(input)
