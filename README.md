@@ -79,7 +79,19 @@ npm i prisma
 npx prisma init
 npx prisma migrate dev
 
-# Prisma Client
+[Referential Actions]
+Referential actions는 관련된 레코드가 삭제되거나 업데이트될 때 어떤 일이 발생하는지를 결정합니다. Prisma는 아래의 referential actions 종류를 지원합니다.
 
+(onDelete 기준으로 설명합니다.)
+Cascade: 참조 레코드를 삭제하면 참조 레코드의 삭제가 트리거됩니다.
+Restrict: 참조 레코드가 있는 경우 삭제를 방지합니다.
+NoAction: Restrict과 유사하지만 사용 중인 데이터베이스에 따라 다릅니다.
+SetNull: 참조 필드가 NULL로 설정됩니다. (optional일 때만 정상 작동)
+SetDefault: 참조 필드가 기본값으로 설정됩니다.
+
+[ Prisma Client ]
 Prisma Client는 데이터에 맞춰 자동 생성되는 type-safe 쿼리 빌더입니다.
 데이터베이스와 상호작용할 때 SQL 대신 직관적인 API를 제공해줍니다. 데이터를 쉽게 조회, 삽입, 업데이트, 삭제할 수 있으며, 자동 타입 안전성과 코드 자동 완성 기능을 제공합니다.
+
+[ Prisma Studio ]
+npx prisma studio
