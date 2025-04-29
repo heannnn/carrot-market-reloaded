@@ -161,3 +161,8 @@ matcher에 지정한 특정 경로들에서만 미들웨어가 실행되도록 �
 export const config = {
 matcher: ['/profile', '/about/:path*', '/dashboard/:path*'],
 }
+
+# Runtime
+
+미들웨어는 현재 Edge 런타임과 호환되는 API만 지원한다.
+Node.js 전용 API는 지원되지 않는다.
