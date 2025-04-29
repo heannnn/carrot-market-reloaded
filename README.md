@@ -54,7 +54,12 @@ data의 타입이 유효한지 검사하기 위해 .parse 메소드를 사용할
 데이터가 유효한 경우 true값의 success와 데이터 정보가 담긴 data를 반환
 유효하지 않은 경우에는 false값의 success와 에러 정보가 담긴 error를 반환
 
-예시 : stringSchema.safeParse(12); // => { success: false; error: ZodError }
+예시 : stringSchema.safeParse(data); // => { success: false; error: ZodError }
+
+[.safeParseAsync]
+safeParse의 비동기 버전. 편의상 .spa로도 사용가능
+await stringSchema.safeParseAsync(data);
+await stringSchema.spa(data);
 
 # validator
 
