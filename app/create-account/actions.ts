@@ -15,32 +15,6 @@ import getSession from "@/lib/session";
 
 const checkUsername = (username: string) => !username.includes("potato");
 
-const checkUniqueUsername = async (username: string) => {
-  const user = await db.user.findUnique({
-    where: {
-      username,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  return !Boolean(user);
-};
-
-const checkUniqueEmail = async (email: string) => {
-  const userEmail = await db.user.findUnique({
-    where: {
-      email,
-    },
-    select: {
-      id: true,
-    },
-  });
-
-  return !Boolean(userEmail);
-};
-
 const checkPasswords = ({
   password,
   confirm_password,
@@ -58,22 +32,56 @@ const formSchema = z
       })
       .toLowerCase()
       .trim()
-      .refine(checkUsername, "No potatos allowed")
-      .refine(checkUniqueUsername, "This username is already taken"),
+      .refine(checkUsername, "No potatos allowed"),
 
-    email: z
-      .string()
-      .email()
-      .toLowerCase()
-      .refine(
-        checkUniqueEmail,
-        "There is an account already registered with that email."
-      ),
+    email: z.string().email().toLowerCase(),
     password: z
       .string()
       .min(PASSWORD_MIN_LENGTH)
       .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
     confirm_password: z.string().min(10),
+  })
+  .superRefine(async ({ username }, ctx) => {
+    const user = await db.user.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (user) {
+      ctx.addIssue({
+        code: "custom",
+        message: "This username is already taken",
+        path: ["username"],
+        fatal: true,
+      });
+      return z.NEVER;
+      // fatal : true 로 만들고 NEVER를 리턴하면 뒤에 다른 refine이 있어도 실행되지 않는다.
+    }
+  })
+  .superRefine(async ({ email }, ctx) => {
+    const user = await db.user.findUnique({
+      where: {
+        email,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (user) {
+      ctx.addIssue({
+        code: "custom",
+        message: "There is an account already registered with that email.",
+        path: ["email"],
+        fatal: true,
+      });
+      return z.NEVER;
+      // {fatal : true} 로 만들고 NEVER를 리턴하면 뒤에 다른 refine이 있어도 실행되지 않는다.
+    }
   })
   .refine(checkPasswords, {
     message: "Both passwords should be the same",

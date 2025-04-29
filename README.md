@@ -61,6 +61,13 @@ safeParse의 비동기 버전. 편의상 .spa로도 사용가능
 await stringSchema.safeParseAsync(data);
 await stringSchema.spa(data);
 
+[superRefine]
+ctx.addIssue를 통해 원하는 만큼 이슈를 추가
+함수 실행 중에 ctx.addIssue가 호출되지 않으면 유효성 검사가 통과됨
+fatal: true 설정 시, 그 다음 refine이 실행되는 것을 방지
+(해당 에러가 발생하면 즉시 validation을 중단하라는 의미)
+z.NEVER 설정 시, 반환 값 자체를 사용하기 위해서가 아닌 타입 시스템을 맞추기 위함
+
 # validator
 
 JavaScript의 validator 모듈은 문자열 검증 및 살균(sanitization)을 위한 라이브러리
@@ -123,3 +130,9 @@ npm i iron-session
 # 비밀번호 생성기 사이트 (1password password generator)
 
 https://1password.com/password-generator
+
+# notFound()
+
+import { notFound } from "next/navigation";
+NEXT_NOT_FOUND 오류가 발생하고 해당 오류가 발생한 라우트의 렌더링이 종료된다.
+NotFound UI를 렌더링하여 오류에 대한 적절한 처리를 할 수 있다.
