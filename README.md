@@ -100,3 +100,26 @@ Prisma Client는 데이터에 맞춰 자동 생성되는 type-safe 쿼리 빌더
 
 [ Prisma Studio ]
 npx prisma studio
+
+# bcrypt
+
+해시 함수를 이용할 수 있는 패키지
+해시 함수는 단방향 함수 => 정해진 input 정해진 난수 output
+npm i bcrypt
+npm i @types/bcrypt
+
+[.hash]
+해시함수. 2번째 인자에 몇번 해싱할지 결정
+예시: await bcrypt.hash(password, 12);
+
+# iron-session
+
+안전하고, statelss한, 쿠키 기반 JavaScript용 세션 라이브러리
+사용자에게 쿠키를 전송함 => 사용자가 어떤 액션을 취할 때마다 보냈던 쿠키가 서버로 전송됨. 쿠키에 사용자의 ID 정보를 저장해서 해당 사용자가 누구인지 확인할 것임.
+그러나, 그냥 ID 데이터를 쿠키에 넣으면 보안상 문제가 생길 수 있음. 따라서 암호화해서 넣고, 빼서 다시 복호화할 것임.
+이를 위한 도구로 Iron Session이라는 라이브러리를 사용함.
+npm i iron-session
+
+# 비밀번호 생성기 사이트 (1password password generator)
+
+https://1password.com/password-generator
