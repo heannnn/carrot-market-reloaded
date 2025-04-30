@@ -25,12 +25,15 @@ const checkEmailExists = async (email: string) => {
 };
 
 const formSchema = z.object({
-  email: z.string().email().toLowerCase(),
+  email: z
+    .string()
+    .email()
+    .toLowerCase()
+    .refine(checkEmailExists, "An account with this email does not exists."),
   password: z
     .string({ required_error: "Password is required" })
     .min(PASSWORD_MIN_LENGTH)
-    .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR)
-    .refine(checkEmailExists, "An account with this email does not exists."),
+    .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
 });
 
 export async function login(prevState: any, formData: FormData) {
