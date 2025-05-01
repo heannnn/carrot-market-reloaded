@@ -166,3 +166,25 @@ matcher: ['/profile', '/about/:path*', '/dashboard/:path*'],
 
 미들웨어는 현재 Edge 런타임과 호환되는 API만 지원한다.
 Node.js 전용 API는 지원되지 않는다.
+
+# Next에서 제공하는 Image 컴포넌트
+
+기본 jsx img가 지원하지않는 여러가지 강력한기능을 지원함
+
+- 로딩 전후로 컴포넌트 위치가 밀리는 content shift 를 방지함.
+- 압축률이나, 화면 크기별 압축옵션을 제공함
+  필수 prop으로 src, width, height, alt를 입력해주어야함.
+  width, height를 모른다면, fill을 제공해주면됨
+  fill은 이미지를 자동으로 부모컴포넌트의 크기로 맞춰줌
+  https://nextjs.org/docs/app/api-reference/components/image
+- 하지만 외부 호스트의 이미지(다른 사이트의 이미지 링크 등)를 불러올 때는 보안 상의 이유로 이 기능이 허용되지 않는다.
+  따라서 next.config.mjs에서 hostname들을 등록해 주어야 한다.
+  (nextConfig > images > remotePatterns > hostname)
+
+# Intl
+
+Intl.RelativeTimeFormat
+Intl.RelativeTimeFormat은 JavaScript의 국제화(Intl) API 중 하나로, 날짜나 시간을 현재 시점과의 상대적인 시간 표현으로 포맷해주는 기능을 제공한다.
+const formatter= Intl.RelativeTimeFormat("아스키 국가코드")
+const 시간차이를표현한문장 = formatter.format("숫자","숫자의 단위")
+ex. Intl.RelativeTimeFormat("kr").format(~~, "days") ; 3일전
