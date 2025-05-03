@@ -61,6 +61,13 @@ safeParse의 비동기 버전. 편의상 .spa로도 사용가능
 await stringSchema.safeParseAsync(data);
 await stringSchema.spa(data);
 
+[.infer]
+모든 스키마의 TypeScript 유형을 추출할 수 있다.
+const A = z.string();
+type A = z.infer<typeof A>; // string
+const u: A = 12; // TypeError
+const u: A = "asdf"; // compiles
+
 [superRefine]
 ctx.addIssue를 통해 원하는 만큼 이슈를 추가
 함수 실행 중에 ctx.addIssue가 호출되지 않으면 유효성 검사가 통과됨
@@ -188,3 +195,27 @@ Intl.RelativeTimeFormat은 JavaScript의 국제화(Intl) API 중 하나로, 날�
 const formatter= Intl.RelativeTimeFormat("아스키 국가코드")
 const 시간차이를표현한문장 = formatter.format("숫자","숫자의 단위")
 ex. Intl.RelativeTimeFormat("kr").format(~~, "days") ; 3일전
+
+# CloudFlare
+
+Cloudflare Image Optimization
+확장 가능한 이미지 파이프라인을 빌드하여 빠르고 안전한 방법으로 이미지를 저장하고, 크기를 조정하고, 최적화하고 제공할 수 있다..
+https://developers.cloudflare.com/images
+
+[Request a one-time upload URL]
+일회성 업로드 URL 요청
+
+Cloudflare Images의 Direct Creator Upload 기능을 사용하면 사용자가 API 키나 토큰을 클라이언트에 노출하지 않고도 일회성 업로드 URL로 이미지를 업로드할 수 있다.
+
+[이미지 Variants]
+variant을 사용하면 다양한 사용 사례에 맞게 이미지 크기를 조정하는 방법을 지정할 수 있다.
+기본적으로 이미지는 public variant와 함께 제공되지만 필요에 맞게 최대 100개의 variant을 만들 수 있다.
+
+- 유연한 Varaints
+  https://developers.cloudflare.com/images/manage-images/enable-flexible-variants
+- URL을 통한 변환
+  https://developers.cloudflare.com/images/transform-images/transform-via-url
+
+# React Hook Form
+
+npm i react-hook-form
