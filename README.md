@@ -219,3 +219,20 @@ variant을 사용하면 다양한 사용 사례에 맞게 이미지 크기를 �
 # React Hook Form
 
 npm i react-hook-form
+
+# unstable_cache
+
+unstable_cache를 사용하면 데이터베이스 쿼리와 같은 비용이 많이 드는 작업의 결과를 캐시하고 여러 요청에서 재사용할 수 있다.
+https://nextjs.org/docs/app/api-reference/functions/unstable_cache
+[사용방법]
+첫 번째 매개변수: action 함수 삽입 (db 통신, 데이터를 반환하는 함수)
+두번째 매개변수: 캐시키 배열 (프로젝트 내부에서 하나의 action에대해 unique해야함.
+다른 action함수에 같은값을 사용하면 안됨)
+세번째 매개변수 : Options
+revalidate는 Next.js에서 데이터 캐싱을 얼마나 자주 갱신할지 설정하는 옵션
+unstable_cache(getInitialProducts, ["home-products"], {
+revalidate: 60,
+});
+
+이렇게 세팅한 unstable_cache를 기존의 action대신 호출해주면 됨.
+use cache (Next15~, 이 프로젝트에서는 NextJS 14버전을 사용하므로 unstable_cache라 사용한다.)
