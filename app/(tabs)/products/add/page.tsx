@@ -9,7 +9,6 @@ import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { productSchema, ProductType } from "./schema";
-import { error } from "console";
 
 export default function AddProduct() {
   const [preview, setPreview] = useState("");
@@ -19,6 +18,7 @@ export default function AddProduct() {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<ProductType>({
     resolver: zodResolver(productSchema),
