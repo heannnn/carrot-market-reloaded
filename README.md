@@ -236,3 +236,18 @@ revalidate: 60,
 
 이렇게 세팅한 unstable_cache를 기존의 action대신 호출해주면 됨.
 use cache (Next15~, 이 프로젝트에서는 NextJS 14버전을 사용하므로 unstable_cache라 사용한다.)
+
+# revalidatePath
+
+revalidatePath는 지정한 경로의 캐시된 데이터를 수동으로 무효화(재검증)한다.
+이는 Next.js의 App Router에서 동적 데이터를 업데이트할 때 유용함
+revalidatePath는 서버에서 실행되므로, use server 또는 서버 액션 내부에서 호출해야한다.
+ex.
+import { revalidatePath } from 'next/cache'
+revalidatePath('/home');
+
+# revalidateTag
+
+revalidateTag는 특정 캐시 태그에 대해 저장된 데이터를 즉시 무효화하는 기능을 제공한다.
+이를 통해 지정된 태그에 해당하는 캐시가 다음 방문 시 새로고침되도록 강제할 수 있다..
+revalidateTag(tag: string): void;
